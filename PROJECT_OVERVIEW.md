@@ -303,96 +303,198 @@ navnotes/
 
 ---
 
-## 🚀 How to Run
+## 🚀 Application Overview
 
-### **Start Backend**
-```bash
-cd backend
-npm start
-# Server runs on http://localhost:5000
-# MongoDB connects automatically
-```
+The architecture follows a **three-tier pattern**:
 
-### **Start Frontend**
-```bash
-cd frontend
-npm run dev
-# Dev server runs on http://localhost:5179 (or next available)
-# Vite proxy routes /api/* to backend
-```
+1. **Frontend Layer** - React components with state management
+2. **Backend Layer** - Express API routes handling business logic
+3. **Database Layer** - MongoDB storing persistent data
 
-### **Access Application**
-- 🌐 Frontend: http://localhost:5179
-- 🔧 Backend API: http://localhost:5000
-- 📝 Sign up to create account
-- 📤 Upload files or share links
-- 🔍 Search community notes
+Data flows through:
+- User interactions → React components → Axios API calls
+- Backend validates & processes → Mongoose models
+- Results returned to frontend for rendering
 
 ---
 
 ## 🔐 Security Features
 
 1. **Password Hashing**: bcryptjs (10 salt rounds)
-2. **JWT Tokens**: Secure session management
+2. **JWT Tokens**: Secure session management with AuthContext
 3. **File Validation**: MIME type checking (PDF, DOCX, TXT, JPG, PNG)
 4. **File Size Limit**: 50MB max per upload
-5. **CORS**: Configured for localhost development
-6. **Environment Variables**: Sensitive data in `.env`
+5. **Environment Variables**: Sensitive data in `.env`
+6. **Protected Routes**: JWT verification on sensitive endpoints
 
 ---
 
 ## 📊 API Endpoints
 
 ### **Authentication**
-- `POST /api/auth/signup` - Create new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user (protected)
+- `POST /api/auth/signup` - Create new user account
+- `POST /api/auth/login` - Authenticate user and get JWT token
+- `GET /api/auth/me` - Get current user profile (requires JWT)
 
-### **Notes**
-- `POST /api/notes/upload` - Upload file or link (protected)
-- `GET /api/notes` - Get user's notes (protected)
-- `GET /api/notes/public` - Get all community notes (public)
-- `DELETE /api/notes/:id` - Delete user's note (protected)
-- `GET /api/notes/download/:id` - Download file (public)
-
----
-
-## 🎯 Learning Outcomes
-
-This project demonstrates:
-- ✅ Full-stack development (React + Node.js)
-- ✅ RESTful API design
-- ✅ Database modeling with Mongoose
-- ✅ User authentication & authorization
-- ✅ File upload handling
-- ✅ Context API state management
-- ✅ Responsive UI design with Tailwind
-- ✅ Modern development workflow with Vite
-- ✅ Git version control & GitHub deployment
+### **Notes Management**
+- `POST /api/notes/upload` - Upload file or share link (requires JWT)
+- `GET /api/notes` - Retrieve user's personal notes (requires JWT)
+- `GET /api/notes/public` - Browse all community notes (public)
+- `DELETE /api/notes/:id` - Delete user's note (requires JWT)
+- `GET /api/notes/download/:id` - Download file by ID (public)
 
 ---
 
-## 🔄 Key Features Workflow Summary
+## 🔄 Feature Workflows
 
-| Feature | Frontend | Backend | Database |
-|---------|----------|---------|----------|
-| **Authentication** | React Context | JWT + bcrypt | User collection |
-| **File Upload** | Multer input + Axios | Express + Multer | Note collection + /uploads/ |
-| **Search** | Real-time filter | GET /api/notes | MongoDB query |
-| **Dark Mode** | Theme Context | N/A | N/A |
-| **Attribution** | Display uploadedBy | Store with note | Ref to user |
+### **File Upload Process**
+1. User selects file on Dashboard
+2. Visual feedback: ✅ emoji, green border, file size shown
+3. User enters subject and description
+4. Submit → FormData sent to backend via Axios
+5. Backend: Multer saves file to `/uploads/` folder
+6. MongoDB record created with metadata and user reference
+7. User sees confirmation in Dashboard
+
+### **Authentication Process**
+1. User fills signup form (name, email, password)
+2. Frontend sends to `/api/auth/signup`
+3. Backend hashes password with bcryptjs
+4. User document stored in MongoDB
+5. JWT token generated and returned
+6. Frontend stores token in AuthContext
+7. Token sent in headers for future requests
+
+### **Search & Browse Process**
+1. Home page loads public community notes
+2. Admin resources displayed at top
+3. User types in search bar
+4. Frontend filters notes by subject/caption in real-time
+5. Results update instantly
+6. Click file → direct download from `/uploads/`
+7. Click link → opens external URL
+8. Uploader name shown for attribution
 
 ---
 
-## 📝 Version Info
+## 💾 Data Persistence
 
-- **Frontend**: React 18, Vite 4, Tailwind 3
-- **Backend**: Node.js, Express 4, Mongoose 7
-- **Database**: MongoDB Atlas
-- **Deployed**: Local development (ready for deployment)
+**User Model** stores:
+- Unique email (prevents duplicate accounts)
+- Hashed password (never stored in plain text)
+- Full name for display
+- Creation timestamp
+
+**Note Model** stores:
+- Subject/title of the material
+- Description/caption
+- Type: 'file' or 'link'
+- File metadata: name, size, upload URL
+- Or link URL for external resources
+- Reference to uploader (User ID)
+- Upload timestamp
+- Flag for admin resources
 
 ---
 
-**Created**: Oct 31, 2025  
-**Status**: ✅ Fully Functional  
+## 🎨 User Interface
+
+**Pages Available**:
+- **Home** - Browse all public community notes + admin resources
+- **Dashboard** - Personal note management and file uploads
+- **Login** - Existing user authentication
+- **SignUp** - New user registration
+
+**Key UI Features**:
+- Frosted glass design with backdrop blur
+- Dark/light mode toggle via Theme Context
+- Responsive grid layout for all screen sizes
+- File selection visual feedback (✅ emoji indicator)
+- Real-time search filtering
+- Download progress indicators for files
+- Smooth navigation with React Router
+
+---
+
+## 📁 Project Structure
+
+```
+navnotes/
+├── frontend/                      # React Vite Application
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── Navbar.jsx        # Navigation + theme toggle
+│   │   ├── pages/
+│   │   │   ├── Home.jsx          # Public notes + admin resources
+│   │   │   ├── Dashboard.jsx     # File upload + my notes
+│   │   │   ├── Login.jsx         # User login form
+│   │   │   └── SignUp.jsx        # User registration form
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx   # Auth state + JWT management
+│   │   │   └── ThemeContext.jsx  # Dark/light mode
+│   │   ├── App.jsx               # Router setup & layout
+│   │   └── index.css             # Tailwind CSS imports
+│   ├── package.json              # React dependencies
+│   └── vite.config.js            # Build config + API proxy
+│
+├── backend/                       # Node.js Express Application
+│   ├── src/
+│   │   ├── models/
+│   │   │   ├── User.js           # User schema (name, email, password)
+│   │   │   └── Note.js           # Note schema (files + links)
+│   │   ├── routes/
+│   │   │   ├── auth.js           # Signup, login endpoints
+│   │   │   └── notes.js          # Upload, browse, delete endpoints
+│   │   ├── middleware/
+│   │   │   └── auth.js           # JWT verification middleware
+│   │   ├── config/
+│   │   │   └── database.js       # MongoDB connection
+│   │   └── server.js             # Express app entry point
+│   ├── uploads/                  # Folder for uploaded files
+│   ├── package.json              # Node.js dependencies
+│   └── .env                      # MongoDB URI + JWT secret
+│
+├── .gitignore                    # Exclude node_modules, .env, uploads
+├── .vscode/
+│   └── settings.json             # Linting config
+└── README.md                     # Quick reference guide
+```
+
+---
+
+## 🎯 Key Technical Highlights
+
+| Component | Technology | Why Used |
+|-----------|-----------|---------|
+| **Frontend Framework** | React 18 | Component reusability & state management |
+| **Build Tool** | Vite 4 | 10x faster than webpack, HMR |
+| **Styling** | Tailwind CSS 3 | Utility-first, no CSS files needed |
+| **State Management** | Context API | Lightweight, no Redux needed |
+| **Backend Framework** | Express.js 4 | Minimal, flexible Node.js framework |
+| **Database** | MongoDB Atlas | NoSQL, cloud-hosted, flexible schema |
+| **ODM** | Mongoose 7 | Schema validation, query helpers |
+| **Authentication** | JWT + bcryptjs | Stateless, secure token-based auth |
+| **File Upload** | Multer | Standard middleware for multipart |
+| **HTTP Client** | Axios | Promise-based, request interceptors |
+| **Deployment Ready** | Cloud agnostic | Can deploy to Vercel, Railway, Heroku |
+
+---
+
+## 📚 Learning Path Demonstrated
+
+- ✅ Full-stack JavaScript development
+- ✅ Component-driven architecture
+- ✅ RESTful API design principles
+- ✅ Database design and relationships
+- ✅ Authentication & authorization
+- ✅ File handling & storage
+- ✅ Real-time filtering & search
+- ✅ Responsive design patterns
+- ✅ Modern tooling & build processes
+- ✅ Version control with Git
+
+---
+
+**Status**: ✅ Production Ready  
+**Last Updated**: Oct 31, 2025  
 **Repository**: https://github.com/bablijaiswal/navnotes
