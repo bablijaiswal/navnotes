@@ -1,23 +1,10 @@
 # 📚 NavNotes
 
-A simple website where BCA students can upload and share their study materials with each other.
+A knowledge-sharing platform for BCA students to upload, share, and discover study materials.
 
 ---
 
-## 📖 What is NavNotes?
-
-**NavNotes** is a community learning platform where BCA students can:
-- 📝 **Upload Notes** - Share your study materials (PDF, Word documents, text files, images)
-- 🔗 **Share Links** - Post helpful tutorials and learning resources
-- 🔍 **Search Notes** - Find what you need by typing keywords
-- 👥 **Browse Materials** - See what other students have shared
-- 🎨 **Dark/Light Mode** - Choose your favorite theme
-- 🔐 **Safe & Secure** - Only you can access your uploads
-- 📱 **Mobile Friendly** - Works on your phone and computer knowledge-sharing platform for BCA students to upload, share, and discover study materials.
-
----
-
-## About
+## � About
 
 **NavNotes** is a modern community-driven learning hub where BCA students can:
 - 📝 Upload study materials (PDF, DOCX, TXT, Images)
@@ -30,54 +17,39 @@ A simple website where BCA students can upload and share their study materials w
 
 ---
 
-## 💻 Technologies Used
+## 💻 Tech Stack
 
-### **Frontend (What you see in your browser)**
-- **React 18** - Makes the website interactive
-- **Vite 4** - Super fast development tool
-- **React Router** - Allows you to navigate between pages
-- **Axios** - Connects frontend to backend
-- **Tailwind CSS** - Makes the website look beautiful
-- **Context API** - Stores your login information
+### **Frontend**
+- **React 18** - Modern UI library with hooks
+- **Vite 4** - Lightning-fast build tool and dev server
+- **React Router v6** - Client-side navigation
+- **Axios** - HTTP client for API calls
+- **Tailwind CSS 3** - Utility-first CSS framework with frosted glass components
+- **Context API** - Global state management (auth, theme)
 
-### **Backend (Server that runs in the cloud)**
-- **Node.js** - Runs JavaScript on the server
-- **Express.js** - Handles website requests
-- **Mongoose** - Organizes database data
-- **JWT** - Keeps your account secure
-- **bcryptjs** - Encrypts your password
-- **Multer** - Handles file uploads
+### **Backend**
+- **Node.js** - Server runtime
+- **Express.js 4** - Web framework and routing
+- **Mongoose 7** - MongoDB object modeling and validation
+- **JWT + bcryptjs** - Secure authentication and password hashing
+- **Multer** - File upload handling
+- **CORS** - Cross-origin request support
 
-### **Database (Where data is stored)**
-- **MongoDB** - Cloud database that stores all notes and user accounts
+### **Database**
+- **MongoDB Atlas** - Cloud NoSQL database
+- **Collections**: users (accounts), notes (uploads and links)
 
 ## 🏗️ Architecture
 
-## 🏗️ How It Works (Architecture)
-
 ```
-Your Browser (Laptop/Phone)
-    ↓
-Website Frontend (React) - What you see
-    ↓
-Backend Server (Express) - Does the work
-    ↓
-Database (MongoDB) - Stores information
+Browser (React Frontend)
+    ↓ (HTTP/REST API)
+Vite Dev Server (Port 5179)
+    ↓ (API Proxy)
+Express Backend (Port 5000)
+    ↓ (Mongoose ODM)
+MongoDB Atlas Cloud Database
 ```
-
----
-
-## ✨ Main Features
-
-| Feature | What it does |
-|---------|-------------|
-| 🔐 **Sign Up & Login** | Create your account and login securely |
-| 📤 **Upload Files** | Upload PDF, Word, Images to share |
-| 🔗 **Share Links** | Post URLs of helpful tutorials |
-| 🔍 **Search** | Find notes quickly using keywords |
-| 👥 **View Others' Uploads** | See materials shared by classmates |
-| 🎨 **Dark/Light Theme** | Choose light or dark interface |
-| 📱 **Mobile Ready** | Use on phone or computer |
 
 ---
 
@@ -92,6 +64,9 @@ Database (MongoDB) - Stores information
 | GET | `/api/notes/public` | Get all notes |
 | DELETE | `/api/notes/:id` | Delete note |
 
+---
+
+## � Troubleshooting
 ---
 
 ## ✨ Key Features
@@ -119,3 +94,4 @@ ISC
 Babli Jaiswal - [@bablijaiswal](https://github.com/bablijaiswal)
 
 ---
+
