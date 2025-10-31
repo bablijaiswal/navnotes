@@ -95,6 +95,3 @@ Babli Jaiswal - [@bablijaiswal](https://github.com/bablijaiswal)
 
 ---
 
-## 👨‍💻 Author
-
-Babli Jaiswal - [@bablijaiswal](https://github.com/bablijaiswal)
