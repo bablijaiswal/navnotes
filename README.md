@@ -4,7 +4,7 @@ A knowledge-sharing platform for BCA students to upload, share, and discover stu
 
 ---
 
-## � About
+## About
 
 **NavNotes** is a modern community-driven learning hub where BCA students can:
 - 📝 Upload study materials (PDF, DOCX, TXT, Images)
@@ -64,9 +64,6 @@ MongoDB Atlas Cloud Database
 | GET | `/api/notes/public` | Get all notes |
 | DELETE | `/api/notes/:id` | Delete note |
 
----
-
-## � Troubleshooting
 ---
 
 ## ✨ Key Features
