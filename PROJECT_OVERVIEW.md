@@ -63,7 +63,7 @@ Think of NavNotes like a restaurant:
 
 ---
 
-## 🛠️ Technology Stack (What We Use)
+## 🛠️ Technology Stack (What I have Used)
 
 ### **Frontend - The Website You See**
 | Part | Tool | What it does |
