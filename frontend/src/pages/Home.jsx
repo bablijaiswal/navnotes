@@ -112,7 +112,7 @@ const Home = () => {
                 href={resource.linkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-blue-500/20 shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(59,130,246,0.3)] p-6 cursor-pointer"
+                className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-blue-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(59,130,246,0.3)] p-6 cursor-pointer"
               >
                 <div className="text-4xl mb-3">🔗</div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -167,7 +167,7 @@ const Home = () => {
                     href={note.linkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-green-500/20 shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(34,197,94,0.3)] p-6 cursor-pointer"
+                    className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-green-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(34,197,94,0.3)] p-6 cursor-pointer"
                   >
                     <div className="text-4xl mb-3">🔗</div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -196,7 +196,7 @@ const Home = () => {
                   // File Card
                   <div
                     key={note._id}
-                    className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-yellow-500/20 shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(234,179,8,0.3)] p-6"
+                    className="bg-white/40 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-yellow-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(234,179,8,0.3)] p-6"
                   >
                     <div className="text-4xl mb-3">📄</div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">

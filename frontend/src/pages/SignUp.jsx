@@ -50,18 +50,18 @@ const SignUp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white dark:from-gray-950 dark:to-gray-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-xl dark:shadow-2xl dark:border dark:border-gray-800 p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-2">
+    <div className="min-h-screen bg-gray-50 dark:bg-cozy-dark flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md bg-white/60 dark:bg-cozy-dark-card/60 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-white/10 shadow-lg dark:shadow-2xl p-8">
+        <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">
           Join NavNotes
         </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
           Create your account and start sharing
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-red-100 dark:bg-red-900/30 border-2 border-red-500 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-100 dark:bg-red-500/20 border border-red-400 dark:border-red-500 text-red-800 dark:text-red-300 px-4 py-3 rounded-lg text-sm">
               {error}
             </div>
           )}
@@ -77,7 +77,7 @@ const SignUp = () => {
               onChange={handleChange}
               placeholder="John Doe"
               required
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 bg-white/50 dark:bg-cozy-dark-card/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all"
             />
           </div>
 
@@ -92,7 +92,7 @@ const SignUp = () => {
               onChange={handleChange}
               placeholder="your@email.com"
               required
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 bg-white/50 dark:bg-cozy-dark-card/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all"
             />
           </div>
 
@@ -107,7 +107,7 @@ const SignUp = () => {
               onChange={handleChange}
               placeholder="••••••••"
               required
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 bg-white/50 dark:bg-cozy-dark-card/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all"
             />
           </div>
 
@@ -122,14 +122,14 @@ const SignUp = () => {
               onChange={handleChange}
               placeholder="••••••••"
               required
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 bg-white/50 dark:bg-cozy-dark-card/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors disabled:opacity-50 mt-6"
+            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] disabled:opacity-50 mt-6"
           >
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>

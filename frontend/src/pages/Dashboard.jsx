@@ -18,7 +18,8 @@ const Dashboard = () => {
   // File form state
   const [fileForm, setFileForm] = useState({
     subject: '',
-    caption: ''
+    caption: '',
+    selectedFile: null
   })
   
   // Link form state
@@ -49,8 +50,7 @@ const Dashboard = () => {
 
   const handleFileUpload = async (e) => {
     e.preventDefault()
-    const fileInput = document.getElementById('file-input')
-    const file = fileInput?.files?.[0]
+    const file = fileForm.selectedFile
     if (!file) {
       setError('Please select a file')
       return
@@ -78,8 +78,7 @@ const Dashboard = () => {
         }
       })
       setNotes(prev => [response.data, ...prev])
-      fileInput.value = '' // Clear input
-      setFileForm({ subject: '', caption: '' }) // Clear form
+      setFileForm({ subject: '', caption: '', selectedFile: null }) // Clear form and file
       setSuccess('✅ Your note has been uploaded successfully!')
       setTimeout(() => setSuccess(''), 5000) // Hide after 5 seconds
     } catch (err) {
@@ -180,20 +179,37 @@ const Dashboard = () => {
             <form onSubmit={handleFileUpload} className="space-y-4">
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select File *</label>
-                <div className="border-2 border-dashed border-gray-400 dark:border-gray-600 rounded-lg p-8 text-center hover:bg-gray-50 dark:hover:bg-gray-800/50 transition cursor-pointer">
+                <div className={`border-2 border-dashed rounded-lg p-8 text-center transition cursor-pointer ${
+                  fileForm.selectedFile
+                    ? 'border-green-500 dark:border-green-400 bg-green-50 dark:bg-green-900/20'
+                    : 'border-gray-400 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}>
                   <input
                     type="file"
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0]
+                      setFileForm({...fileForm, selectedFile: file || null})
+                    }}
                     disabled={uploading}
                     className="hidden"
                     id="file-input"
                     accept=".pdf,.docx,.txt,.jpg,.png"
                   />
                   <label htmlFor="file-input" className="cursor-pointer block">
-                    <div className="text-5xl mb-3">📄</div>
+                    <div className="text-5xl mb-3">
+                      {fileForm.selectedFile ? '✅' : '📄'}
+                    </div>
                     <p className="text-gray-800 dark:text-gray-200 font-semibold mb-1">
-                      {uploading ? 'Uploading...' : 'Click to upload or drag and drop'}
+                      {fileForm.selectedFile
+                        ? `Selected: ${fileForm.selectedFile.name}`
+                        : uploading ? 'Uploading...' : 'Click to upload or drag and drop'
+                      }
                     </p>
+                    {fileForm.selectedFile && (
+                      <p className="text-green-600 dark:text-green-400 text-sm font-medium mb-1">
+                        {(fileForm.selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                      </p>
+                    )}
                     <p className="text-gray-600 dark:text-gray-400 text-sm">PDF, DOCX, TXT, JPG, PNG (Max 50MB)</p>
                   </label>
                 </div>
